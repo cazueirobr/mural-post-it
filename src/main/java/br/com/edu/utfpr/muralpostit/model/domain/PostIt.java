@@ -1,25 +1,21 @@
 package br.com.edu.utfpr.muralpostit.model.domain;
+import lombok.*;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "postits")
+@Data(staticConstructor = "of")
+@NoArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PUBLIC)
 public class PostIt {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NonNull
     private String tema;
+    @NonNull
     private String colaborador;
+    @NonNull
     private String texto;
-
-    public PostIt(String tema, String colaborador, String texto){
-        this.tema = tema;
-        this.colaborador = colaborador;
-        this.texto = texto;
-
-    }
-
-    public String getTema(){
-        return tema;
-    }
-    public String getColaborador(){
-        return colaborador;
-    }
-
-    public String getTexto(){
-        return texto;
-    }
 }

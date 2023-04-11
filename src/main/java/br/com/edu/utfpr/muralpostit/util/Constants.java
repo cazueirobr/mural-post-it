@@ -5,5 +5,5 @@ public class Constants {
     public static final String COUNTER_SESSION = "counterSession";
 
     //Nome do persistence unit
-    public static final String PERSISTENCE_UNIT = "hello-app-pu";
+    public static final String PERSISTENCE_UNIT = "muralpostit-pu";
 }
