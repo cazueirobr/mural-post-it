@@ -27,12 +27,10 @@ public class FormPostItController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String theme = request.getParameter("cor");
-        String idColaborador = request.getParameter("colaboradores");
+        String employerId = request.getParameter("colaboradores");
         String text = request.getParameter("mensagem");
 
-        Integer valor = Integer.parseInt(idColaborador);
-        
-        employerService.getById(1);
+        Integer valor = Integer.parseInt(employerId);
 
 
         PostIt postit = new PostIt(theme, employerService.getById(valor), text);
@@ -40,7 +38,7 @@ public class FormPostItController extends HttpServlet {
 
 
         request.setAttribute("flash.postit", postit);
-        request.setAttribute("flash.colaborador", idColaborador);
+        request.setAttribute("flash.colaborador", employerId);
 
 
 
