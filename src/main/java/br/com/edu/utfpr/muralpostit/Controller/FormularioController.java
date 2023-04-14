@@ -22,6 +22,8 @@ public class FormularioController extends HttpServlet {
     EmployerService employerService = new EmployerService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(employerService.findAll().get(0).getNome());
+        request.setAttribute("colaboradores", employerService.findAll());
         request.getRequestDispatcher("/WEB-INF/view/screen/adicionar.jsp").forward(request, response);
     }
 

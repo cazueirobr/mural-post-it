@@ -9,10 +9,14 @@ import java.io.IOException;
 
 
 
+
 @WebServlet(name = "AdicionarPostItController", value = "/adicionar-post-it")
 public class AdicionarPostItController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 
         request.getRequestDispatcher("/WEB-INF/view/screen/form-result.jsp").forward(request, response);
 

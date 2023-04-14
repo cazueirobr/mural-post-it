@@ -1,9 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <t:template title="Home" adicionar="active">
     <jsp:body>
+        ${colaboradores}
         <div class="container">
             <form action="adicionar-post" method="post">
                 <div class="row justify-content-center">
@@ -21,7 +23,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="colaborador">Colaborador:</label>
-                            <select class="form-control" id="colaborador" name="colaborador">
+                            <select class="form-control" id="colaborador" name="colaboradores">
+                                <c:forEach var="colaborador" items="${colaboradores}">
+                                    <option value="${colaborador.getId()}">${colaborador.getNome()}</option>
+                                </c:forEach>
+
                                 <option value="1">Matheus</option>
                                 <option value="2">Guilherme</option>
                                 <option value="3">Henrique</option>
