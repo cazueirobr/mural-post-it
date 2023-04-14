@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta http-equiv="refresh" content="5;URL=/mural-home">
+    <title>Postit armazenado</title>
 </head>
 <body>
 O tema é ${postit.getTema()} <br>

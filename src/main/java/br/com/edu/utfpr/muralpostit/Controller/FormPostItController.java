@@ -1,5 +1,6 @@
 package br.com.edu.utfpr.muralpostit.Controller;
 
+import br.com.edu.utfpr.muralpostit.model.domain.Employer;
 import br.com.edu.utfpr.muralpostit.model.domain.PostIt;
 import br.com.edu.utfpr.muralpostit.service.EmployerService;
 import br.com.edu.utfpr.muralpostit.service.PostItService;
@@ -12,8 +13,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "PostItFormController", value = "/adicionar-post")
-public class PostItFormController extends HttpServlet {
+@WebServlet(name = "FormPostItController", value = "/adicionar-post")
+public class FormPostItController extends HttpServlet {
 
     PostItService postItService = new PostItService();
     EmployerService employerService = new EmployerService();
@@ -25,18 +26,16 @@ public class PostItFormController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String tema = request.getParameter("cor");
-        String idColaborador = request.getParameter("colaborador");
-        String texto = request.getParameter("mensagem");
+        String theme = request.getParameter("cor");
+        String idColaborador = request.getParameter("colaboradores");
+        String text = request.getParameter("mensagem");
 
-        long valor = Long.parseLong(idColaborador);
-
-
-
-
+        Integer valor = Integer.parseInt(idColaborador);
+        
+        employerService.getById(1);
 
 
-        PostIt postit = new PostIt(tema,employerService.getById(valor), texto);
+        PostIt postit = new PostIt(theme, employerService.getById(valor), text);
         postItService.save(postit);
 
 

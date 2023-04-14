@@ -10,8 +10,7 @@
 
 <t:template title="Informações" info="active">
     <jsp:body>
-        teste <br>
-        O numero de visitantes é ${visitantes}
+        O numero de visitantes é ${visitantes} <br>
         O numero da sua visita é ${numeroVisita}
     </jsp:body>
 </t:template>

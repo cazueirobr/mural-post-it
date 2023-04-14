@@ -13,7 +13,7 @@ import jakarta.persistence.*;
 public class Employer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @NonNull
     private String nome;
 
