@@ -10,8 +10,8 @@ import java.io.IOException;
 
 
 
-@WebServlet(name = "AdicionarPostItController", value = "/adicionar-post-it")
-public class AdicionarPostItController extends HttpServlet {
+@WebServlet(name = "AddPostItController", value = "/adicionar-post-it")
+public class AddPostItController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
