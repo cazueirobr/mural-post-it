@@ -1,8 +1,10 @@
 package br.com.edu.utfpr.muralpostit.Controller;
 
+import br.com.edu.utfpr.muralpostit.model.domain.Employer;
 import br.com.edu.utfpr.muralpostit.model.domain.PostIt;
 import br.com.edu.utfpr.muralpostit.model.dto.PostItDTO;
 import br.com.edu.utfpr.muralpostit.model.mapper.PostItMapper;
+import br.com.edu.utfpr.muralpostit.service.EmployerService;
 import br.com.edu.utfpr.muralpostit.service.PostItService;
 
 
@@ -17,6 +19,7 @@ import java.io.IOException;
 public class FormularioController extends HttpServlet {
 
     PostItService postItService = new PostItService();
+    EmployerService employerService = new EmployerService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/view/screen/adicionar.jsp").forward(request, response);
@@ -30,10 +33,11 @@ public class FormularioController extends HttpServlet {
 
         Integer idColaboradorInt = Integer.parseInt(idColaborador);
 
-
-        PostIt postit = new PostIt(tema, idColaborador, texto);
+        Employer colaborador = new Employer("Matheus");
+        employerService.save(colaborador);
+        PostIt postit = new PostIt(tema, colaborador, texto);
         postItService.save(postit);
-        PostItDTO postitDTO = PostItMapper.toDTO(postit);
+        //PostItDTO postitDTO = PostItMapper.toDTO(postit);
 
         request.setAttribute("flash.postit", postit);
         request.setAttribute("flash.colaborador", idColaborador);
