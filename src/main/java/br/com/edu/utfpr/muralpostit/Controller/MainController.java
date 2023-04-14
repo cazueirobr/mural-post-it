@@ -23,7 +23,6 @@ public class MainController extends HttpServlet {
     public boolean isVisitor(HttpServletRequest request){
 
         Cookie[] cookies = request.getCookies();
-        String cookieValue = null;
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("visitante")) {

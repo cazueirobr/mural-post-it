@@ -6,21 +6,15 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "postits")
+@Table(name = "employers")
 @Data(staticConstructor = "of")
 @NoArgsConstructor
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
-public class PostIt {
+public class Employer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @NonNull
-    private String tema;
+    private String nome;
 
-
-    @NonNull
-    @ManyToOne
-    private Employer colaborador;
-    @NonNull
-    private String texto;
 }

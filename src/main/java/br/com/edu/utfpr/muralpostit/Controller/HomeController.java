@@ -1,5 +1,6 @@
 package br.com.edu.utfpr.muralpostit.Controller;
 
+import br.com.edu.utfpr.muralpostit.service.PostItService;
 import br.com.edu.utfpr.muralpostit.util.Constants;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,9 +10,12 @@ import java.io.IOException;
 
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeController extends HttpServlet {
+    PostItService postItService = new PostItService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         counterOfVisitors(request, response);
+
+        request.setAttribute("postits", postItService.findAll());
         request.getRequestDispatcher("/WEB-INF/view/screen/index.jsp").forward(request, response);
     }
 
@@ -21,16 +25,16 @@ public class HomeController extends HttpServlet {
     }
 
     public void counterOfVisitors(HttpServletRequest request, HttpServletResponse response){
-        boolean meuAtributo = (boolean) request.getAttribute("visitor");
-        if (meuAtributo == true) {
+        boolean visitor = (boolean) request.getAttribute("visitor");
+        if (visitor) {
 
-            Integer notasCriadas = (Integer) request.getServletContext().getAttribute(Constants.COUNTER_APPLICATION);
-            if (notasCriadas == null) {
-                notasCriadas = 0;
+            Integer visit = (Integer) request.getServletContext().getAttribute(Constants.COUNTER_APPLICATION);
+            if (visit == null) {
+                visit = 0;
             }
-            notasCriadas++;
+            visit++;
 
-            getServletContext().setAttribute(Constants.COUNTER_APPLICATION, notasCriadas);
+            getServletContext().setAttribute(Constants.COUNTER_APPLICATION, visit);
             Cookie visitCookie = new Cookie("visitante", String.valueOf(1));
 
 
@@ -38,19 +42,15 @@ public class HomeController extends HttpServlet {
             response.addCookie(visitCookie);
 
 
-            int sessionNumberVisit = notasCriadas;
-            System.out.println(sessionNumberVisit);
+            int sessionNumberVisit = visit;
 
             request.getSession(true).setAttribute(Constants.COUNTER_SESSION, sessionNumberVisit);
 
 
-            Cookie numberVisit = new Cookie("numero_visitante", String.valueOf(notasCriadas));
+            Cookie numberVisit = new Cookie("numero_visitante", String.valueOf(visit));
             response.addCookie(numberVisit);
         }
-        else {
 
-
-        }
 
 
     }

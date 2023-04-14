@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<t:template title="Home" adicionar="active">
+<t:template title="Adicionar" adicionar="active">
     <jsp:body>
         <div class="container">
             <form action="adicionar-post" method="post">
@@ -11,20 +12,23 @@
                         <div class="form-group">
                             <label for="cor">Cor:</label>
                             <select class="form-control" id="cor" name="cor">
-                                <option value="bg-primary">Azul</option>
-                                <option value="bg-warning">Amarelo</option>
-                                <option value="bg-success">Verde</option>
-                                <option value="bg-light">Branco</option>
+                                <option value="azul-escuro">Azul escuro</option>
+                                <option value="azul-claro">Azul claro</option>
+                                <option value="vermelho">Vermelho</option>
+                                <option value="laranja">Laranja</option>
+                                <option value="amarelo">Amarelo</option>
+                                <option value="verde">Verde</option>
+                                <option value="roxo">Roxo</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="colaborador">Colaborador:</label>
-                            <select class="form-control" id="colaborador" name="colaborador">
-                                <option value="1">Matheus</option>
-                                <option value="2">Guilherme</option>
-                                <option value="3">Henrique</option>
+                            <select class="form-control" id="colaborador" name="colaboradores">
+                                <c:forEach var="colaborador" items="${colaboradores}">
+                                    <option value="${colaborador.getId()}">${colaborador.getNome()}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
